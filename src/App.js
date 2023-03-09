@@ -9,8 +9,8 @@ import Diary from './pages/Diary';
 import New from './pages/New';
 
 // COMPONENTS
-import MyButton from './components/MyButton';
-import MyHeader from './components/MyHeader';
+// import MyButton from './components/MyButton';
+// import MyHeader from './components/MyHeader';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -53,7 +53,7 @@ function App() {
       const diaryList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
       dataId.current = parseInt(diaryList[0].id) + 1;
 
-      dispatch({ type: "INIT", data: diaryList })
+      dispatch({ type: "INIT", data: diaryList });
     }
   }, []);
 

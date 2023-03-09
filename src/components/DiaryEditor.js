@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import EmotionItem from "./EmotionItem";
 import { useContext } from 'react';
 import { DiaryDispatchContext } from "../App";
@@ -21,9 +21,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
     const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
-    const handelClickEmote = (emotion) => {
+    const handelClickEmote = useCallback((emotion) => {
         setEmotion(emotion);
-    }
+    }, []);
 
     const handleSubmit = () => {
         if (content.length < 1) {

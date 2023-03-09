@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, React } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
@@ -20,7 +20,9 @@ const ControlMenu = ({ value, onChange, optionList }) => {
         className="ControlMenu"
         value={value}
         onChange={e => onChange(e.target.value)}>
-        {optionList.map((it, idx) => <option value={it.value} key={idx}>{it.name}</option>)}
+        {optionList.map((it, idx) => <option value={it.value} key={idx}>
+            {it.name}
+        </option>)}
     </select>
 }
 
@@ -30,6 +32,15 @@ const DiaryList = ({ diaryList }) => {
     const navigate = useNavigate();
     const [sortType, setSortType] = useState('latest');
     const [filter, setFilter] = useState("all");
+
+
+    const handleSetSortType = (sortType) => {
+        setSortType(sortType);
+    }
+    const handleSetFilter = (filter) => {
+        setFilter(filter);
+    }
+
 
     const getProcessedDiaryList = () => {
 
@@ -64,12 +75,12 @@ const DiaryList = ({ diaryList }) => {
                 <div className="left_col">
                     <ControlMenu
                         value={sortType}
-                        onChange={setSortType}
+                        onChange={handleSetSortType}
                         optionList={sortOptionList}
                     />
                     <ControlMenu
                         value={filter}
-                        onChange={setFilter}
+                        onChange={handleSetFilter}
                         optionList={filterOptionList}
                     />
                 </div>
